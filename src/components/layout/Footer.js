@@ -2,9 +2,18 @@ import React from "react";
 
 function Footer() {
   return (
-    <div>
-      <div style={{ backgroundColor: "rgba(108, 147, 137, 1)" }}>
-        <div>Footer Info</div>
+    <div style={{}}>
+      <div
+        style={{
+          backgroundColor: "rgba(0, 40, 104, 1)",
+          height: "5vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "white",
+        }}
+      >
+        <div>Footer</div>
       </div>
     </div>
   );

@@ -7,15 +7,25 @@ const Layout = (props) => {
 
   return (
     <div>
-      <div>
+      <div
+        style={{
+          position: "fixed",
+          top: "0",
+          width: "100vw",
+        }}
+      >
         <Header />
       </div>
 
-      <div style={{ backgroundColor: "rgba(147, 108, 118, 1)" }}>
-        {children}
-      </div>
+      <div>{children}</div>
 
-      <div>
+      <div
+        style={{
+          width: "100vw",
+          position: "fixed",
+          bottom: "0",
+        }}
+      >
         <Footer />
       </div>
     </div>
