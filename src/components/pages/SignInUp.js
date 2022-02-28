@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../layout/Layout";
+import Modal from "../layout/Modal";
 
 function SignInUp() {
   return (
@@ -55,10 +56,9 @@ function SignInUp() {
           </div>
         </div>
 
-        <div style={{ marginTop: "16px" }}>
-          <button style={{ borderRadius: "4px" }}>
-            <h2>Sign me up!</h2>
-          </button>
+        <div style={{ marginTop: "12px" }}>
+          <h3>New User? Click the button below to sign up!</h3>
+          <Modal />
         </div>
       </div>
     </Layout>

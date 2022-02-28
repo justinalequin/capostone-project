@@ -51,16 +51,25 @@ function Hero() {
           borderRadius: "2px",
           boxShadow:
             "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        <h2>
-          Tampa Bay's premier Electric and Exotic vehicle rental platform.
+        <h2
+          style={{
+            backgroundColor: "rgba(150, 150 , 150, .5)",
+            fontFamily: "sans-serif",
+            width: "95vw",
+            borderRadius: "2px",
+          }}
+        >
+          Tampa's premier Electric and Exotic vehicle rental platform.
         </h2>
       </div>
 
       <div
         style={{
-          backgroundColor: "rgba(126, 129, 128, .9)",
+          backgroundColor: "rgba(126, 129, 128, .5)",
           width: "80vw",
           margin: "auto",
           padding: "12px",
@@ -79,7 +88,7 @@ function Hero() {
             listSyle: "inside",
             border: "solid lightgray 1px",
             borderRadius: "2px",
-            backgroundColor: "rgba(126, 129, 128, .5)",
+            backgroundColor: "rgba(250, 250, 250, .5)",
           }}
         >
           <p>1. Create an account</p>
@@ -98,23 +107,33 @@ function Hero() {
           alignItems: "center",
         }}
       >
-        <div>
+        <div
+          style={{
+            backgroundColor: "rgba(0, 40, 104, 1)",
+            color: "white",
+            width: "100vw",
+            marginTop: "22px",
+            marginBottom: "22px",
+            borderRadius: "2px",
+            padding: "4px",
+            boxShadow:
+              "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <h2
             style={{
-              backgroundColor: "rgba(0, 40, 104, 1)",
-              color: "white",
-              width: "100vw",
-              marginTop: "22px",
+              backgroundColor: "rgba(150, 150 , 150, .5)",
+              fontFamily: "sans-serif",
+              width: "95vw",
               borderRadius: "2px",
-              padding: "4px",
-              boxShadow:
-                "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
             }}
           >
             Testimonials
           </h2>
         </div>
-        <div style={{ marginBottom: "44px", width: "95vw" }}>
+        <div style={{ marginBottom: "66px", width: "95vw" }}>
           <div
             style={{
               listStyleType: "none",

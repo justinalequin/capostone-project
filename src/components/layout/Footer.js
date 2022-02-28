@@ -13,7 +13,7 @@ function Footer() {
           color: "white",
         }}
       >
-        <div>Footer</div>
+        <h3 style={{}}>Footer</h3>
       </div>
     </div>
   );
