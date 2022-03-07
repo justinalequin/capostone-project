@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import "./Hero.css";
 import Layout from "../layout/Layout";
 
@@ -16,6 +18,7 @@ function Hero() {
           position: "relative",
           marginBottom: "22px",
           marginTop: "88px",
+          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
         }}
       >
         <div>
@@ -25,19 +28,21 @@ function Hero() {
           >
             TBEV RENTALS
           </h1>
-          <button
-            style={{
-              backgroundColor: "rgba(0, 40, 104, .5)",
-              position: "absolute",
-              bottom: "12px",
-              left: "12px",
-              borderRadius: "4px",
-              padding: "2px",
-              color: "white",
-            }}
-          >
-            <h2>SIGN UP NOW</h2>
-          </button>
+          <Link to="/signinup">
+            <button
+              style={{
+                backgroundColor: "rgba(0, 40, 104, .5)",
+                position: "absolute",
+                bottom: "12px",
+                left: "12px",
+                borderRadius: "4px",
+                padding: "2px",
+                color: "white",
+              }}
+            >
+              <h2>SIGN UP NOW</h2>
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -98,6 +103,16 @@ function Hero() {
           <p>5. Enjoy your EV experience!</p>
         </div>
       </div>
+
+      <img
+        src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/evgo-1613253058.jpg"
+        style={{
+          width: "87vw",
+          marginTop: "16px",
+          borderRadius: "4px",
+          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+        }}
+      ></img>
 
       <div
         style={{
