@@ -23,12 +23,12 @@ function Hero() {
       >
         <div>
           <h1
-            class="mainTitle"
+            className="mainTitle"
             style={{ color: "white", fontFamily: "sans-serif" }}
           >
             TBEV RENTALS
           </h1>
-          <Link to="/signinup">
+          <Link to="/sign-in-up">
             <button
               style={{
                 backgroundColor: "rgba(0, 40, 104, .5)",

@@ -1,19 +1,21 @@
-import React, { useContext } from "react";
-import { useDispatch } from "react-redux";
-import { addToCartActionCreator } from "../reduxStore/shoppingCartState";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCartActionCreator } from "../reduxStore/shoppingCartState";
 
-export default function ProductDisplay(props) {
+const CartItem = (props) => {
   const dispatch = useDispatch();
 
-  const { product } = props;
-
-  const { id, title, brand, price, description, image } = product;
-
-  const handleAddToCart = () => {
-    console.log("This func has been call");
-
-    dispatch(addToCartActionCreator(product));
+  const removeItem = (id) => {
+    dispatch(removeFromCartActionCreator(id));
   };
+
+  const {
+    cartItem: { id, title, image, brand, description, price },
+  } = props;
+
+  const reduxState = useSelector((state) => state);
+
+  console.log("reduxState: ", reduxState);
 
   return (
     <div
@@ -75,7 +77,7 @@ export default function ProductDisplay(props) {
       </div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <button
-          onClick={handleAddToCart}
+          onClick={() => removeItem(id)}
           style={{
             textDecoration: "underline",
             backgroundColor: "rgba(0, 40, 104, 1)",
@@ -87,10 +89,12 @@ export default function ProductDisplay(props) {
               "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
           }}
         >
-          <h4>Add to cart</h4>
+          <h4>Remove</h4>
         </button>
         <h4>${price / 100} /day</h4>
       </div>
     </div>
   );
-}
+};
+
+export default CartItem;

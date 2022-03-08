@@ -43,12 +43,15 @@ const ProductUploadPage = (props) => {
         }}
       >
         <div>
-          <h1>Upload product</h1>
+          <h1>Upload Product Page</h1>
+          <p>Must have valid referral code.</p>
         </div>
         <div
           style={{
             width: "80vw",
             marginBottom: "22px",
+            backgroundColor: "lightgray",
+            padding: "4px",
           }}
         >
           <div
@@ -152,10 +155,32 @@ const ProductUploadPage = (props) => {
               }}
             />
           </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "6px",
+            }}
+          >
+            <label>Referral Code -</label>
+
+            <input id="referral" />
+          </div>
         </div>
         <div>
-          <button variant="contained" onClick={onSubmit}>
-            Upload product
+          <button
+            style={{
+              backgroundColor: "rgba(0, 40, 104, 1)",
+              height: "8vh",
+              width: "30vw",
+              borderRadius: "4px",
+              padding: "2px",
+              color: "white",
+              marginTop: "12px",
+            }}
+            onClick={onSubmit}
+          >
+            <h3>Upload Product</h3>
           </button>
         </div>
       </div>

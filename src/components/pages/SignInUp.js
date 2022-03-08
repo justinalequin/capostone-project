@@ -48,32 +48,81 @@ const SignInUp = () => {
       <Layout>
         <div style={{ marginTop: "88px" }}>
           <h1>Hi, {user.firstName}</h1>
+
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
+              backgroundColor: "lightgray",
+              padding: "12px",
+              width: "66vw",
+              margin: "auto",
+              borderRadius: "2px",
+              paddingBottom: "32px",
             }}
           >
-            <Link to="/action-page">
-              <button style={{ width: "44vw", margin: "4px" }}>
-                Find a vehicle
-              </button>
-            </Link>
-
-            <Link to="/user-rentals">
-              <button style={{ width: "44vw", margin: "4px" }}>
-                My Rentals
-              </button>
-            </Link>
-
-            <button
-              onClick={handleSignOut}
-              style={{ width: "44vw", margin: "4px" }}
+            <h4>Your Dashboard</h4>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
-              Sign out
-            </button>
+              <Link to="/action-page">
+                <button
+                  style={{
+                    backgroundColor: "rgba(0, 40, 104, 1)",
+                    borderRadius: "4px",
+                    width: "44vw",
+                    color: "white",
+                    margin: "4px",
+                  }}
+                >
+                  Find a Vehicle
+                </button>
+              </Link>
+
+              <Link to="/user-rentals">
+                <button
+                  style={{
+                    backgroundColor: "rgba(0, 40, 104, 1)",
+                    borderRadius: "4px",
+                    width: "44vw",
+                    color: "white",
+                    margin: "4px",
+                  }}
+                >
+                  My Rentals
+                </button>
+              </Link>
+
+              <Link to="/new-host">
+                <button
+                  style={{
+                    backgroundColor: "rgba(0, 40, 104, 1)",
+                    borderRadius: "4px",
+                    width: "44vw",
+                    color: "white",
+                    margin: "4px",
+                  }}
+                >
+                  Host Your Vehicle
+                </button>
+              </Link>
+
+              <button
+                onClick={handleSignOut}
+                style={{
+                  backgroundColor: "rgba(0, 40, 104, 1)",
+                  borderRadius: "4px",
+                  width: "44vw",
+                  color: "white",
+                  margin: "4px",
+                }}
+              >
+                Sign Out
+              </button>
+            </div>
           </div>
         </div>
       </Layout>

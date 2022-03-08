@@ -7,18 +7,49 @@ const Calendar = () => {
   const [endDate, setEndDate] = useState(new Date());
   return (
     <div>
-      <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-      />
-      <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
-      <button
-        onClick={console.log(
-          ["startDate: ", startDate],
-          ["endDate: ", endDate]
-        )}
+      <h2 style={{ color: "white" }}>
+        Select the day or days you would like to rent a vehicle
+      </h2>
+      <p style={{ color: "white" }}>
+        Same day rentals available at host discretion
+      </p>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+
+          color: "white",
+          fontWeight: "bold",
+
+          marginBottom: "4px",
+        }}
       >
-        CLick Me
+        <p>Start:</p>
+        <DatePicker
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+        />
+        <p>10AM</p>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+
+          color: "white",
+          fontWeight: "bold",
+        }}
+      >
+        <p>End: </p>
+        <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+        <p>10AM</p>
+      </div>
+
+      <button style={{ marginTop: "16px" }}>
+        <p style={{ fontWeight: "bold" }}>Check Availability</p>
       </button>
     </div>
   );

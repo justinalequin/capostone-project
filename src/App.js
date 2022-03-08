@@ -10,6 +10,9 @@ import SignInUp from "./components/pages/SignInUp";
 import ProductUploadPage from "./components/pages/ProductUploadPage";
 import CartPage from "./components/pages/CartPage";
 import UserRentals from "./components/pages/UserRentals";
+import NewHostPage from "./components/pages/NewHostPage";
+
+export const shoppingCartContext = React.createContext();
 
 function App() {
   return (
@@ -26,6 +29,7 @@ function App() {
             />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/user-rentals" element={<UserRentals />} />
+            <Route path="/new-host" element={<NewHostPage />} />
           </Routes>
         </BrowserRouter>
       </div>
