@@ -7,10 +7,11 @@ export default function ProductDisplay(props) {
 
   const { product } = props;
 
-  const { id, title, brand, price, description, image } = product;
+  const { id, title, brand, price, description, image, quantity } = product;
 
   const handleAddToCart = () => {
     console.log("This func has been call");
+    console.log(product);
 
     dispatch(addToCartActionCreator(product));
   };

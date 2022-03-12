@@ -56,6 +56,7 @@ export const addToCartActionCreator = (product) => (dispatch) => {
       price: product.price,
       image: product.image,
       description: product.description,
+      quantity: product.quantity,
     },
   });
 };

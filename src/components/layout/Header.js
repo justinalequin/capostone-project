@@ -5,7 +5,7 @@ import cart from "../images/cart.png";
 import { useSelector } from "react-redux";
 
 function Header() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.cleanFoundUser.firstName);
 
   const Greeting = () => {
     var myDate = new Date();
@@ -54,7 +54,7 @@ function Header() {
         >
           {user ? (
             <h4>
-              {Greeting()} {user.firstName}!
+              {Greeting()} {user}!
             </h4>
           ) : (
             <div>

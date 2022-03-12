@@ -7,12 +7,12 @@ import Layout from "../layout/Layout";
 
 const CartPage = (props) => {
   const shoppingCart = useSelector((state) => state.shoppingCart);
-  const dispatch = useDispatch();
-  console.log(shoppingCart);
 
-  // const total = shoppingCart.reduce((acc, cartItem) => {
-  //   return acc + cartItem.price * cartItem.quantity;
-  // }, 0);
+  const total = shoppingCart.reduce((acc, cartItem) => {
+    return acc + cartItem.price * cartItem.quantity;
+  }, 0);
+
+  const dispatch = useDispatch();
 
   const emptyShoppingCart = () => {
     dispatch(emptyCartActionCreator());
@@ -24,26 +24,19 @@ const CartPage = (props) => {
         <h1>Cart Page</h1>
       </div>
 
-      <div>
+      <div style={{ marginBottom: "44px" }}>
         <div>
-          {shoppingCart.map((product) => (
-            <div
-              style={{
-                backgroundColor: "rgba(250, 250, 250, 0.5)",
-                width: "90vw",
-                padding: "2px",
-                marginBottom: "22px",
-                borderRadius: "2px",
-              }}
-            >
+          {shoppingCart.map((item) => (
+            <div key={item.id}>
               <CartItem
-                product={{
-                  id: product.id,
-                  title: product.title,
-                  brand: product.brand,
-                  price: product.price,
-                  description: product.description,
-                  image: product.image,
+                cartItem={{
+                  id: item.id,
+                  title: item.title,
+                  brand: item.brand,
+                  price: item.price,
+                  description: item.description,
+                  image: item.image,
+                  quantity: item.quantity,
                 }}
               />
             </div>
@@ -51,7 +44,22 @@ const CartPage = (props) => {
         </div>
       </div>
 
-      <div></div>
+      <div
+        style={{
+          backgroundColor: " rgba(0, 40, 104, 1)",
+          color: "white",
+          width: "80vw",
+          margin: "auto",
+          borderRadius: "2px",
+          marginBottom: "44px",
+        }}
+      >
+        <h1>Total: ${total / 100}</h1>
+      </div>
+
+      <div>
+        <button onClick={emptyShoppingCart}>EMPTY</button>
+      </div>
     </Layout>
   );
 };

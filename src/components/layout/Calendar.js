@@ -5,6 +5,12 @@ import "react-datepicker/dist/react-datepicker.css";
 const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+
+  const onSubmit = () => {
+    console.log(startDate, "startDate", typeof startDate);
+    console.log(endDate, "endDate");
+  };
+
   return (
     <div>
       <h2 style={{ color: "white" }}>
@@ -28,7 +34,11 @@ const Calendar = () => {
         <p>Start:</p>
         <DatePicker
           selected={startDate}
-          onChange={(date) => setStartDate(date)}
+          onChange={(date) => setStartDate(date[1])}
+          selectsStart
+          startDate={startDate}
+          endDate={endDate}
+          minDate={startDate}
         />
         <p>10AM</p>
       </div>
@@ -44,11 +54,18 @@ const Calendar = () => {
         }}
       >
         <p>End: </p>
-        <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+        <DatePicker
+          selected={endDate}
+          onChange={(date) => setEndDate(date)}
+          selectsEnd
+          startDate={startDate}
+          endDate={endDate}
+          minDate={startDate}
+        />
         <p>10AM</p>
       </div>
 
-      <button style={{ marginTop: "16px" }}>
+      <button style={{ marginTop: "16px" }} onClick={onSubmit}>
         <p style={{ fontWeight: "bold" }}>Check Availability</p>
       </button>
     </div>

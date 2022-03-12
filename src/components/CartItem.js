@@ -9,13 +9,11 @@ const CartItem = (props) => {
     dispatch(removeFromCartActionCreator(id));
   };
 
-  const {
-    cartItem: { id, title, image, brand, description, price },
-  } = props;
-
   const reduxState = useSelector((state) => state);
 
-  console.log("reduxState: ", reduxState);
+  const {
+    cartItem: { id, title, image, quantity, price, description, brand },
+  } = props;
 
   return (
     <div
@@ -92,6 +90,7 @@ const CartItem = (props) => {
           <h4>Remove</h4>
         </button>
         <h4>${price / 100} /day</h4>
+        <p>{quantity}</p>
       </div>
     </div>
   );

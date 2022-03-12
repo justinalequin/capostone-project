@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 function ActionPage() {
   const [productData, setProductData] = useState();
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     axios
       .get("http://localhost:5100/get-products")

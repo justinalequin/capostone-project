@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const SignInUp = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.cleanFoundUser.firstName);
 
   const [signInForm, setSignInForm] = useState({
     userName: "",
@@ -47,7 +47,7 @@ const SignInUp = () => {
     return (
       <Layout>
         <div style={{ marginTop: "88px" }}>
-          <h1>Hi, {user.firstName}</h1>
+          <h1>Hi, {user}</h1>
 
           <div
             style={{
