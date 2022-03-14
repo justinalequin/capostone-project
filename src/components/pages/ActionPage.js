@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../layout/Layout";
 import Calendar from "../layout/Calendar";
-import axios from "axios";
-
+import axiosRequest from "../../axiosRequest";
 import ProductDisplay from "../ProductDisplay";
 
 import { useDispatch } from "react-redux";
@@ -13,8 +12,8 @@ function ActionPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5100/get-products")
+    axiosRequest
+      .get("/get-products")
       .then((response) => setProductData(response.data));
   }, []);
 

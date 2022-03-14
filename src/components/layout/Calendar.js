@@ -6,9 +6,25 @@ const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
+  let formatedStart = startDate.toLocaleString("en-US", {
+    day: "numeric",
+    year: "numeric",
+    month: "numeric",
+  });
+
+  let formatedEnd = endDate.toLocaleString("en-US", {
+    day: "numeric",
+    year: "numeric",
+    month: "numeric",
+  });
+
+  const logUpdate = () => {
+    console.log(formatedStart);
+    console.log(formatedEnd);
+  };
+
   const onSubmit = () => {
-    console.log(startDate, "startDate", typeof startDate);
-    console.log(endDate, "endDate");
+    logUpdate();
   };
 
   return (
@@ -34,7 +50,7 @@ const Calendar = () => {
         <p>Start:</p>
         <DatePicker
           selected={startDate}
-          onChange={(date) => setStartDate(date[1])}
+          onChange={(date) => setStartDate(date)}
           selectsStart
           startDate={startDate}
           endDate={endDate}

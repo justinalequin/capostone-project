@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { shoppingCartReducer } from "./shoppingCartState";
 import { userReducer } from "./userState";
+import { confirmedOrderReducer } from "./confirmedOrderState";
 
 const store = configureStore({
   preloadedState:
@@ -8,6 +9,7 @@ const store = configureStore({
   reducer: {
     shoppingCart: shoppingCartReducer,
     user: userReducer,
+    confirmedOrder: confirmedOrderReducer,
   },
 });
 

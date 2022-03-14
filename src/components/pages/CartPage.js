@@ -1,16 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import axiosRequest from "../../axiosRequest";
 import { emptyCartActionCreator } from "../../reduxStore/shoppingCartState";
 import CartItem from "../CartItem";
 import Layout from "../layout/Layout";
 
+const confirmedOrderInitialState = {
+  vehicleId: "",
+  userId: "",
+  image: "",
+  price: "",
+  brand: "",
+  title: "",
+};
+
 const CartPage = (props) => {
+  const user = useSelector((state) => state.user);
+
+  const [confirmedOrder, setConfirmedOrder] = useState(
+    confirmedOrderInitialState
+  );
   const shoppingCart = useSelector((state) => state.shoppingCart);
+
+  console.log("shoppingCart: ", shoppingCart);
+  console.log(shoppingCart[0].brand);
+  console.log("user: ", user);
+  console.log("confirmedOrder", confirmedOrder);
 
   const total = shoppingCart.reduce((acc, cartItem) => {
     return acc + cartItem.price * cartItem.quantity;
   }, 0);
+
+  useEffect(() => {
+    setConfirmedOrder({
+      vehicleId: shoppingCart[0].id,
+      userId: user.id,
+      image: shoppingCart[0].image,
+      price: shoppingCart[0].price,
+      brand: shoppingCart[0].brand,
+      title: shoppingCart[0].title,
+    });
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -18,10 +49,53 @@ const CartPage = (props) => {
     dispatch(emptyCartActionCreator());
   };
 
+  const confirmOrder = () => {
+    try {
+      axiosRequest
+        .post("/post-order", {
+          orderData: {
+            ...confirmedOrder,
+            price: Number(confirmedOrder.price),
+          },
+        })
+        .then(() => {
+          console.log(confirmedOrder);
+        });
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
+  if (shoppingCart.length === 0) {
+    return (
+      <Layout>
+        <div style={{ marginTop: "88px" }}>
+          <h1>Confirmation Page</h1>
+        </div>
+
+        <h5>Nothing to display yet..</h5>
+
+        <Link to="/action-page">
+          <button
+            style={{
+              backgroundColor: "rgba(0, 40, 104, 1)",
+              borderRadius: "4px",
+              width: "44vw",
+              color: "white",
+              margin: "4px",
+            }}
+          >
+            <h2>Find a Vehicle</h2>
+          </button>
+        </Link>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div style={{ marginTop: "88px" }}>
-        <h1>Cart Page</h1>
+        <h1>Confirmation Page</h1>
       </div>
 
       <div style={{ marginBottom: "44px" }}>
@@ -58,7 +132,35 @@ const CartPage = (props) => {
       </div>
 
       <div>
-        <button onClick={emptyShoppingCart}>EMPTY</button>
+        <button
+          onClick={confirmOrder}
+          style={{
+            backgroundColor: " rgba(0, 40, 104, 1)",
+            color: "white",
+            width: "80vw",
+            margin: "auto",
+            borderRadius: "2px",
+            marginBottom: "44px",
+          }}
+        >
+          <h1>Confirm Reservation</h1>
+        </button>
+      </div>
+
+      <div>
+        <button
+          onClick={emptyShoppingCart}
+          style={{
+            marginBottom: "88px",
+            backgroundColor: " rgba(0, 40, 104, 1)",
+            color: "white",
+            width: "44vw",
+            height: "6vh",
+            borderRadius: "2px",
+          }}
+        >
+          <h4>Cancel Reservation</h4>
+        </button>
       </div>
     </Layout>
   );

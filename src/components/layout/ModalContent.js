@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SIGN_IN_ACTION } from "../../reduxStore/userState";
+import axiosRequest from "../../axiosRequest";
 
 function ModalContent() {
   const dispatch = useDispatch();
@@ -24,10 +24,10 @@ function ModalContent() {
   const onSubmit = () => {
     console.log("signUpForm: ", signUpForm);
 
-    axios
-      .post("http://localhost:5100/create-user", { user: signUpForm })
+    axiosRequest
+      .post("/create-user", { user: signUpForm })
       .then((response) => {
-        console.log("user route was hit successfully!, response: ", response);
+        console.log("create-user route hit, response: ", response);
 
         const createdUserData = response.data;
         dispatch({

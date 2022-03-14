@@ -1,8 +1,8 @@
-import axios from "axios";
+import axiosRequest from "../../axiosRequest";
 import React, { useState } from "react";
 import Layout from "../layout/Layout";
 
-const uploadFromInitialState = {
+const uploadFormInitialState = {
   title: "",
   brand: "",
   description: "",
@@ -12,20 +12,20 @@ const uploadFromInitialState = {
 
 const ProductUploadPage = (props) => {
   const [uploadProductForm, setUploadProductForm] = useState(
-    uploadFromInitialState
+    uploadFormInitialState
   );
 
   const onSubmit = () => {
     try {
-      axios
-        .post("http://localhost:5100/upload-product", {
+      axiosRequest
+        .post("/upload-product", {
           productData: {
             ...uploadProductForm,
             price: Number(uploadProductForm.price),
           },
         })
         .then(() => {
-          setUploadProductForm(uploadFromInitialState);
+          setUploadProductForm(uploadFormInitialState);
         });
     } catch (error) {
       console.log("error: ", error);

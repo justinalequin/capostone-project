@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../layout/Layout";
 import Modal from "../layout/Modal";
-import axios from "axios";
+import axiosRequest from "../../axiosRequest";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const SignInUp = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user.cleanFoundUser.firstName);
+  const user = useSelector((state) => state.user);
 
   const [signInForm, setSignInForm] = useState({
     userName: "",
@@ -24,8 +24,8 @@ const SignInUp = () => {
   const onSubmit = () => {
     console.log("signInForm: ", signInForm);
 
-    axios
-      .post("http://localhost:5100/sign-in", {
+    axiosRequest
+      .post("/sign-in", {
         userCredentials: signInForm,
       })
       .then((response) => {
@@ -33,21 +33,28 @@ const SignInUp = () => {
         dispatch({
           type: SIGN_IN_ACTION,
           payload: {
-            userData: response.data,
+            userData: response.data.user,
           },
         });
       });
   };
 
   const handleSignOut = () => {
-    dispatch({ type: SIGN_OUT_ACTION });
+    axiosRequest
+      .get("/sign-out")
+      .then(() => {
+        dispatch({ type: SIGN_OUT_ACTION });
+      })
+      .catch((error) => console.log("There was a problem signing out"));
   };
 
   if (user) {
+    console.log(user);
+    console.log(user.firstName);
     return (
       <Layout>
         <div style={{ marginTop: "88px" }}>
-          <h1>Hi, {user}</h1>
+          <h1>Hi, {user.firstName}</h1>
 
           <div
             style={{
