@@ -53,12 +53,14 @@ function Header() {
           style={{ color: "white", textDecoration: "none" }}
         >
           {user ? (
-            <h4>
+            <h4 style={{ border: "solid white 2px", padding: "4px" }}>
               {Greeting()} {user.firstName}!
             </h4>
           ) : (
             <div>
-              <h4>Log in/ Sign up</h4>
+              <h4 style={{ border: "solid white 2px", padding: "4px" }}>
+                Login / Sign up
+              </h4>
             </div>
           )}
         </Link>

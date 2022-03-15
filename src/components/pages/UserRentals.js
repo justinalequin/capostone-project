@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../layout/Layout";
 import axiosRequest from "../../axiosRequest";
+import { useSelector } from "react-redux";
 function UserRentals() {
   const [userRentals, setUserRetnals] = useState();
+  const user = useSelector((state) => state.user);
+  console.log(user.id);
+  console.log(userRentals);
 
   useEffect(() => {
     axiosRequest
       .get("/get-orders")
       .then((response) => setUserRetnals(response.data));
+    console.log(userRentals);
   }, []);
 
-  if (!userRentals) {
+  if (!userRentals || userRentals.length === 0) {
     return (
       <Layout>
         <div style={{ marginTop: "88px" }}>
@@ -22,7 +27,7 @@ function UserRentals() {
   }
   if (userRentals) {
     const cleanedUserRentals = userRentals[0];
-    console.log(cleanedUserRentals);
+
     return (
       <Layout>
         <div style={{ marginTop: "88px" }}>

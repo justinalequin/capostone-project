@@ -6,42 +6,18 @@ import { emptyCartActionCreator } from "../../reduxStore/shoppingCartState";
 import CartItem from "../CartItem";
 import Layout from "../layout/Layout";
 
-const confirmedOrderInitialState = {
-  vehicleId: "",
-  userId: "",
-  image: "",
-  price: "",
-  brand: "",
-  title: "",
-};
-
 const CartPage = (props) => {
   const user = useSelector((state) => state.user);
 
-  const [confirmedOrder, setConfirmedOrder] = useState(
-    confirmedOrderInitialState
-  );
   const shoppingCart = useSelector((state) => state.shoppingCart);
 
   console.log("shoppingCart: ", shoppingCart);
-  console.log(shoppingCart[0].brand);
+
   console.log("user: ", user);
-  console.log("confirmedOrder", confirmedOrder);
 
   const total = shoppingCart.reduce((acc, cartItem) => {
     return acc + cartItem.price * cartItem.quantity;
   }, 0);
-
-  useEffect(() => {
-    setConfirmedOrder({
-      vehicleId: shoppingCart[0].id,
-      userId: user.id,
-      image: shoppingCart[0].image,
-      price: shoppingCart[0].price,
-      brand: shoppingCart[0].brand,
-      title: shoppingCart[0].title,
-    });
-  }, []);
 
   const dispatch = useDispatch();
 
@@ -50,21 +26,56 @@ const CartPage = (props) => {
   };
 
   const confirmOrder = () => {
+    // TODO: make an obj with the data the server is expectiong.
+    //TODO: Only allow one car at checkout
+    //
+    const order = {
+      vehicleId: shoppingCart[0].id,
+      userId: user.id,
+      image: shoppingCart[0].image,
+      price: shoppingCart[0].price,
+      brand: shoppingCart[0].brand,
+      title: shoppingCart[0].title,
+    };
+
     try {
       axiosRequest
         .post("/post-order", {
-          orderData: {
-            ...confirmedOrder,
-            price: Number(confirmedOrder.price),
-          },
+          orderData: order,
         })
-        .then(() => {
-          console.log(confirmedOrder);
+        .then((response) => {
+          console.log(response);
         });
     } catch (error) {
       console.log("error: ", error);
     }
   };
+
+  if (!user) {
+    return (
+      <Layout>
+        <div style={{ marginTop: "88px" }}>
+          <h1>Confirmation Page</h1>
+        </div>
+
+        <h5>Nothing to display yet..</h5>
+
+        <Link to="/sign-in-up">
+          <button
+            style={{
+              backgroundColor: "rgba(0, 40, 104, 1)",
+              borderRadius: "4px",
+              width: "44vw",
+              color: "white",
+              margin: "4px",
+            }}
+          >
+            <h2>Login/ Signup</h2>
+          </button>
+        </Link>
+      </Layout>
+    );
+  }
 
   if (shoppingCart.length === 0) {
     return (

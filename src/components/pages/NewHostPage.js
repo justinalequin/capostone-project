@@ -61,7 +61,7 @@ function NewHostPage() {
           </button>
         </Link>
       ) : (
-        <Link to="/sign-up-in">
+        <Link to="/sign-in-up">
           <button
             style={{
               backgroundColor: "rgba(0, 40, 104, 1)",
